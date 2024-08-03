@@ -23,9 +23,14 @@
         VIEWER
     }
 
+    public enum IsSpaceSwitched
+    {
+        YES,
+    }
+
     public static class PermissionsText
     {
-        public const string OWNER = "Owner Permissions Owner Permissions Owner Permissions Owner Permissions Owner Permissions Owner Permissions Owner Permissions Owner Permissions Owner Permissions Owner Permissions Owner Permissions ";
+        public const string OWNER = "Owner Permissions";
         // Add other texts if needed
     }
 

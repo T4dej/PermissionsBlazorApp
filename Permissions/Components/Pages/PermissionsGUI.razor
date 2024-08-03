@@ -1,5 +1,4 @@
-﻿<!-- PermissionsGUI.razor -->
-@page "/permissions"
+﻿@page "/permissions"
 @rendermode InteractiveServer
 @using System.ComponentModel
 @using PermissionEnums
@@ -24,11 +23,11 @@
         </label>
         <label>
             <input type="radio" name="connection-status" value="SHARED" @onchange="(e) => UpdateConnectionStatus(ConnectionStatus.SHARED)" />
-            Shared
+            Shared in Agency space
         </label>
         <label>
             <input type="radio" name="connection-status" value="SHARED_IN_CLIENT" @onchange="(e) => UpdateConnectionStatus(ConnectionStatus.SHARED_IN_CLIENT)" />
-            Shared in Client
+            Shared in Client space
         </label>
 
         <h3>User Role:</h3>
@@ -52,6 +51,12 @@
             <input type="radio" name="role" value="VIEWER" @onchange="(e) => UpdateRole(Role.VIEWER)" />
             Viewer
         </label>
+
+        <h3>Did you switch from Agency to Client space?</h3>
+        <label>
+            <input type="checkbox" name="switchSpace" value="SPACE_SWITCHED" @onchange="(e) => UpdateSpaceSwitched(e.Value as bool?)" />
+            Yes
+        </label>
     </div>
 
     <div class="result">
@@ -67,6 +72,7 @@
     private ConnectionCreated? connection;
     private ConnectionStatus? connectionStatus;
     private Role? role;
+    private bool switchSpace = false;
     private string result = string.Empty;
 
     private void UpdateConnection(ConnectionCreated connectionCreated)
@@ -87,32 +93,42 @@
         UpdateResult();
     }
 
+    private void UpdateSpaceSwitched(bool? isSwitched)
+    {
+        switchSpace = isSwitched ?? false;
+        UpdateResult();
+    }
+
     private void UpdateResult()
     {
         if (connection.HasValue && connectionStatus.HasValue && role.HasValue)
         {
-            result = (connection.Value, connectionStatus.Value, role.Value) switch
+            result = (connection.Value, connectionStatus.Value, role.Value, switchSpace) switch
             {
-                (ConnectionCreated.BY_ME, ConnectionStatus.PRIVATE, Role.OWNER) => PermissionsText.OWNER,
-                (ConnectionCreated.BY_ME, ConnectionStatus.PRIVATE, Role.ADMIN) => "text (something 2) \n Nekaj",
-                (ConnectionCreated.BY_ME, ConnectionStatus.PRIVATE, Role.EDITOR) => "text (something 3)",
-                (ConnectionCreated.BY_ME, ConnectionStatus.PRIVATE, Role.USER) => "text (something 4)",
-                (ConnectionCreated.BY_ME, ConnectionStatus.PRIVATE, Role.VIEWER) => "Can't see shit!",
-                (ConnectionCreated.BY_ME, ConnectionStatus.SHARED, Role.OWNER) => "text (something 7)",
-                (ConnectionCreated.BY_ME, ConnectionStatus.SHARED, Role.ADMIN) => "text (something 8)",
-                (ConnectionCreated.BY_ME, ConnectionStatus.SHARED, Role.EDITOR) => "text (something 9)",
-                (ConnectionCreated.BY_ME, ConnectionStatus.SHARED, Role.USER) => "text (something 10)",
-                (ConnectionCreated.BY_ME, ConnectionStatus.SHARED, Role.VIEWER) => "Can't see shit!",
-                (ConnectionCreated.BY_OTHERS, ConnectionStatus.PRIVATE, Role.OWNER) => "text (something 13)",
-                (ConnectionCreated.BY_OTHERS, ConnectionStatus.PRIVATE, Role.ADMIN) => "text (something 14)",
-                (ConnectionCreated.BY_OTHERS, ConnectionStatus.PRIVATE, Role.EDITOR) => "text (something 15)",
-                (ConnectionCreated.BY_OTHERS, ConnectionStatus.PRIVATE, Role.USER) => "text (something 16)",
-                (ConnectionCreated.BY_OTHERS, ConnectionStatus.PRIVATE, Role.VIEWER) => "Can't see shit!",
-                (ConnectionCreated.BY_OTHERS, ConnectionStatus.SHARED, Role.OWNER) => "text (something 19)",
-                (ConnectionCreated.BY_OTHERS, ConnectionStatus.SHARED, Role.ADMIN) => "text (something 20)",
-                (ConnectionCreated.BY_OTHERS, ConnectionStatus.SHARED, Role.EDITOR) => "text (something 21)",
-                (ConnectionCreated.BY_OTHERS, ConnectionStatus.SHARED, Role.USER) => "text (something 22)",
-                (ConnectionCreated.BY_OTHERS, ConnectionStatus.SHARED, Role.VIEWER) => "Can't see shit!",
+                (ConnectionCreated.BY_ME, ConnectionStatus.PRIVATE, Role.OWNER, false) => PermissionsText.OWNER,
+                (ConnectionCreated.BY_ME, ConnectionStatus.PRIVATE, Role.ADMIN, false) => "text (something 2) \n Nekaj",
+                (ConnectionCreated.BY_ME, ConnectionStatus.PRIVATE, Role.EDITOR, false) => "text (something 3)",
+                (ConnectionCreated.BY_ME, ConnectionStatus.PRIVATE, Role.USER, false) => "text (something 4)",
+                (ConnectionCreated.BY_ME, ConnectionStatus.PRIVATE, Role.VIEWER, false) => "Can't see shit!",
+                (ConnectionCreated.BY_ME, ConnectionStatus.SHARED, Role.OWNER, false) => "text (something 7)",
+                (ConnectionCreated.BY_ME, ConnectionStatus.SHARED, Role.ADMIN, false) => "text (something 8)",
+                (ConnectionCreated.BY_ME, ConnectionStatus.SHARED, Role.EDITOR, false) => "text (something 9)",
+                (ConnectionCreated.BY_ME, ConnectionStatus.SHARED, Role.USER, false) => "text (something 10)",
+                (ConnectionCreated.BY_ME, ConnectionStatus.SHARED, Role.VIEWER, false) => "Can't see shit!",
+                (ConnectionCreated.BY_OTHERS, ConnectionStatus.PRIVATE, Role.OWNER, false) => "text (something 13)",
+                (ConnectionCreated.BY_OTHERS, ConnectionStatus.PRIVATE, Role.ADMIN, false) => "text (something 14)",
+                (ConnectionCreated.BY_OTHERS, ConnectionStatus.PRIVATE, Role.EDITOR, false) => "text (something 15)",
+                (ConnectionCreated.BY_OTHERS, ConnectionStatus.PRIVATE, Role.USER, false) => "text (something 16)",
+                (ConnectionCreated.BY_OTHERS, ConnectionStatus.PRIVATE, Role.VIEWER, false) => "Can't see shit!",
+                (ConnectionCreated.BY_OTHERS, ConnectionStatus.SHARED, Role.OWNER, false) => "text (something 19)",
+                (ConnectionCreated.BY_OTHERS, ConnectionStatus.SHARED, Role.ADMIN, false) => "text (something 20)",
+                (ConnectionCreated.BY_OTHERS, ConnectionStatus.SHARED, Role.EDITOR, false) => "text (something 21)",
+                (ConnectionCreated.BY_OTHERS, ConnectionStatus.SHARED, Role.USER, false) => "text (something 22)",
+                (ConnectionCreated.BY_OTHERS, ConnectionStatus.SHARED, Role.VIEWER, false) => "Can't see shit!",
+                
+                // Handle the case where the space has been switched
+                (ConnectionCreated.BY_ME, ConnectionStatus.PRIVATE, Role.OWNER, true) => "Space je switchan",
+                // Add additional cases for when space is switched if needed
                 _ => string.Empty
             };
         }
