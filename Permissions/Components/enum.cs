@@ -1,10 +1,10 @@
 ﻿namespace PermissionEnums
 {
 
-    public enum ConnectionCreated
+    public enum ConnectionOwner
     {
-        BY_ME,
-        BY_OTHERS
+        ME,
+        OTHER
     }
 
     public enum ConnectionStatus
@@ -21,11 +21,6 @@
         EDITOR,
         USER,
         VIEWER
-    }
-
-    public enum IsSpaceSwitched
-    {
-        YES,
     }
 
     public static class PermissionsText
