@@ -1,0 +1,41 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Programiranje\\gir repositories\\BlazorPermissions\\PermissionsBlazorApp\\Permissions\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Permissions.bundle.scp.css",
+      "PackagePath": "staticwebassets\\Permissions.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Programiranje\\gir repositories\\BlazorPermissions\\PermissionsBlazorApp\\Permissions\\wwwroot\\app.css",
+      "PackagePath": "staticwebassets\\app.css"
+    },
+    {
+      "Id": "C:\\Programiranje\\gir repositories\\BlazorPermissions\\PermissionsBlazorApp\\Permissions\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Programiranje\\gir repositories\\BlazorPermissions\\PermissionsBlazorApp\\Permissions\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Programiranje\\gir repositories\\BlazorPermissions\\PermissionsBlazorApp\\Permissions\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Permissions.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Permissions.props",
+      "PackagePath": "build\\Permissions.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Permissions.props",
+      "PackagePath": "buildMultiTargeting\\Permissions.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Permissions.props",
+      "PackagePath": "buildTransitive\\Permissions.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

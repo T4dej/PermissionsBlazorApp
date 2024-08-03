@@ -1,0 +1,86 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Programiranje\\gir repositories\\BlazorPermissions\\PermissionsBlazorApp\\Permissions\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2D281EB5-CA51-4448-B362-C7AA7688E22B}|Permissions.csproj|c:\\programiranje\\gir repositories\\blazorpermissions\\permissionsblazorapp\\permissions\\components\\pages\\weather.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2D281EB5-CA51-4448-B362-C7AA7688E22B}|Permissions.csproj|solutionrelative:components\\pages\\weather.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2D281EB5-CA51-4448-B362-C7AA7688E22B}|Permissions.csproj|c:\\programiranje\\gir repositories\\blazorpermissions\\permissionsblazorapp\\permissions\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2D281EB5-CA51-4448-B362-C7AA7688E22B}|Permissions.csproj|solutionrelative:components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2D281EB5-CA51-4448-B362-C7AA7688E22B}|Permissions.csproj|c:\\programiranje\\gir repositories\\blazorpermissions\\permissionsblazorapp\\permissions\\components\\pages\\counter.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2D281EB5-CA51-4448-B362-C7AA7688E22B}|Permissions.csproj|solutionrelative:components\\pages\\counter.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2D281EB5-CA51-4448-B362-C7AA7688E22B}|Permissions.csproj|c:\\programiranje\\gir repositories\\blazorpermissions\\permissionsblazorapp\\permissions\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2D281EB5-CA51-4448-B362-C7AA7688E22B}|Permissions.csproj|solutionrelative:components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Counter.razor",
+              "DocumentMoniker": "C:\\Programiranje\\gir repositories\\BlazorPermissions\\PermissionsBlazorApp\\Permissions\\Components\\Pages\\Counter.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\Counter.razor",
+              "ToolTip": "C:\\Programiranje\\gir repositories\\BlazorPermissions\\PermissionsBlazorApp\\Permissions\\Components\\Pages\\Counter.razor",
+              "RelativeToolTip": "Components\\Pages\\Counter.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-02T23:33:05.775Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Home.razor",
+              "DocumentMoniker": "C:\\Programiranje\\gir repositories\\BlazorPermissions\\PermissionsBlazorApp\\Permissions\\Components\\Pages\\Home.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\Home.razor",
+              "ToolTip": "C:\\Programiranje\\gir repositories\\BlazorPermissions\\PermissionsBlazorApp\\Permissions\\Components\\Pages\\Home.razor",
+              "RelativeToolTip": "Components\\Pages\\Home.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-02T23:23:51.663Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "NavMenu.razor",
+              "DocumentMoniker": "C:\\Programiranje\\gir repositories\\BlazorPermissions\\PermissionsBlazorApp\\Permissions\\Components\\Layout\\NavMenu.razor",
+              "RelativeDocumentMoniker": "Components\\Layout\\NavMenu.razor",
+              "ToolTip": "C:\\Programiranje\\gir repositories\\BlazorPermissions\\PermissionsBlazorApp\\Permissions\\Components\\Layout\\NavMenu.razor",
+              "RelativeToolTip": "Components\\Layout\\NavMenu.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAABfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-02T23:22:18.21Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Weather.razor",
+              "DocumentMoniker": "C:\\Programiranje\\gir repositories\\BlazorPermissions\\PermissionsBlazorApp\\Permissions\\Components\\Pages\\Weather.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\Weather.razor",
+              "ToolTip": "C:\\Programiranje\\gir repositories\\BlazorPermissions\\PermissionsBlazorApp\\Permissions\\Components\\Pages\\Weather.razor",
+              "RelativeToolTip": "Components\\Pages\\Weather.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-02T23:22:00.867Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
