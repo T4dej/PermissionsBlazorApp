@@ -27,3 +27,4 @@ C:\Programiranje\gir repositories\BlazorPermissions\PermissionsBlazorApp\Permiss
 C:\Programiranje\gir repositories\BlazorPermissions\PermissionsBlazorApp\Permissions\obj\Debug\net8.0\Permissions.pdb
 C:\Programiranje\gir repositories\BlazorPermissions\PermissionsBlazorApp\Permissions\obj\Debug\net8.0\Permissions.genruntimeconfig.cache
 C:\Programiranje\gir repositories\BlazorPermissions\PermissionsBlazorApp\Permissions\obj\Debug\net8.0\ref\Permissions.dll
+C:\Programiranje\gir repositories\BlazorPermissions\PermissionsBlazorApp\Permissions\obj\Debug\net8.0\Permissions.sourcelink.json

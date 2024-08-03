@@ -1,0 +1,122 @@
+﻿@page "/permissions"
+@rendermode InteractiveServer
+@using System.ComponentModel
+
+<h3>Radio Buttons Example</h3>
+
+<div>
+    <h3>Connection was created by:</h3>
+    <label>
+        <input type="radio" name="connection" value="BY_ME" @onchange="(e) => UpdateConnection(ConnectionCreated.BY_ME)" />
+        Me
+    </label>
+    <label>
+        <input type="radio" name="connection" value="BY_OTHERS" @onchange="(e) => UpdateConnection(ConnectionCreated.BY_OTHERS)" />
+        Others
+    </label>
+</div>
+
+<div>
+    <h3>Connection status:</h3>
+    <label>
+        <input type="radio" name="connection-status" value="PRIVATE" @onchange="(e) => UpdateConnectionStatus(ConnectionStatus.PRIVATE)" />
+        Private
+    </label>
+    <label>
+        <input type="radio" name="connection-status" value="SHARED" @onchange="(e) => UpdateConnectionStatus(ConnectionStatus.SHARED)" />
+        Shared
+    </label>
+</div>
+
+<div>
+    <h3>User Role:</h3>
+    <label>
+        <input type="radio" name="role" value="OWNER" @onchange="(e) => UpdateRole(Role.OWNER)" />
+        Owner
+    </label>
+    <label>
+        <input type="radio" name="role" value="ADMIN" @onchange="(e) => UpdateRole(Role.ADMIN)" />
+        Admin
+    </label>
+    <label>
+        <input type="radio" name="role" value="EDITOR" @onchange="(e) => UpdateRole(Role.EDITOR)" />
+        Editor
+    </label>
+    <label>
+        <input type="radio" name="role" value="USER" @onchange="(e) => UpdateRole(Role.USER)" />
+        User
+    </label>
+    <label>
+        <input type="radio" name="role" value="VIEWER" @onchange="(e) => UpdateRole(Role.VIEWER)" />
+        Viewer
+    </label>
+</div>
+
+<hr />
+
+<div>
+    <h3>Visible actions:</h3>
+    <div id="result">
+        <pre>@result</pre>
+    </div>
+</div>
+
+@code {
+    private ConnectionCreated? connection;
+    private ConnectionStatus? connectionStatus;
+    private Role? role;
+    private string result = string.Empty;
+
+    private void UpdateConnection(ConnectionCreated connectionCreated)
+    {
+        connection = connectionCreated;
+        UpdateResult();
+    }
+
+    private void UpdateConnectionStatus(ConnectionStatus status)
+    {
+        connectionStatus = status;
+        UpdateResult();
+    }
+
+    private void UpdateRole(Role userRole)
+    {
+        role = userRole;
+        UpdateResult();
+    }
+
+    private void UpdateResult()
+    {
+        if (connection.HasValue && connectionStatus.HasValue && role.HasValue)
+        {
+            result = (connection.Value, connectionStatus.Value, role.Value) switch
+            {
+                (ConnectionCreated.BY_ME, ConnectionStatus.PRIVATE, Role.OWNER) => PermissionsText.OWNER,
+                (ConnectionCreated.BY_ME, ConnectionStatus.PRIVATE, Role.ADMIN) => "text (something 2) \n Nekaj",
+                (ConnectionCreated.BY_ME, ConnectionStatus.PRIVATE, Role.EDITOR) => "text (something 3)",
+                (ConnectionCreated.BY_ME, ConnectionStatus.PRIVATE, Role.USER) => "text (something 4)",
+                (ConnectionCreated.BY_ME, ConnectionStatus.PRIVATE, Role.VIEWER) => "Can't see shit!",
+                (ConnectionCreated.BY_ME, ConnectionStatus.SHARED, Role.OWNER) => "text (something 7)",
+                (ConnectionCreated.BY_ME, ConnectionStatus.SHARED, Role.ADMIN) => "text (something 8)",
+                (ConnectionCreated.BY_ME, ConnectionStatus.SHARED, Role.EDITOR) => "text (something 9)",
+                (ConnectionCreated.BY_ME, ConnectionStatus.SHARED, Role.USER) => "text (something 10)",
+                (ConnectionCreated.BY_ME, ConnectionStatus.SHARED, Role.VIEWER) => "Can't see shit!",
+                (ConnectionCreated.BY_OTHERS, ConnectionStatus.PRIVATE, Role.OWNER) => "text (something 13)",
+                (ConnectionCreated.BY_OTHERS, ConnectionStatus.PRIVATE, Role.ADMIN) => "text (something 14)",
+                (ConnectionCreated.BY_OTHERS, ConnectionStatus.PRIVATE, Role.EDITOR) => "text (something 15)",
+                (ConnectionCreated.BY_OTHERS, ConnectionStatus.PRIVATE, Role.USER) => "text (something 16)",
+                (ConnectionCreated.BY_OTHERS, ConnectionStatus.PRIVATE, Role.VIEWER) => "Can't see shit!",
+                (ConnectionCreated.BY_OTHERS, ConnectionStatus.SHARED, Role.OWNER) => "text (something 19)",
+                (ConnectionCreated.BY_OTHERS, ConnectionStatus.SHARED, Role.ADMIN) => "text (something 20)",
+                (ConnectionCreated.BY_OTHERS, ConnectionStatus.SHARED, Role.EDITOR) => "text (something 21)",
+                (ConnectionCreated.BY_OTHERS, ConnectionStatus.SHARED, Role.USER) => "text (something 22)",
+                (ConnectionCreated.BY_OTHERS, ConnectionStatus.SHARED, Role.VIEWER) => "Can't see shit!",
+                _ => string.Empty
+            };
+        }
+        else
+        {
+            result = string.Empty;
+        }
+    }
+}
