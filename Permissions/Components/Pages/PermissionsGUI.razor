@@ -1,66 +1,66 @@
 ﻿@page "/permissions"
 @rendermode InteractiveServer
 @using System.ComponentModel
+@using PermissionEnums
 
-<h3>Radio Buttons Example</h3>
+<div class="container">
+    <div class="radio-group">
+        <h3>Connection was created by:</h3>
+        <label>
+            <input type="radio" name="connection" value="BY_ME" @onchange="(e) => UpdateConnection(ConnectionCreated.BY_ME)" />
+            Me
+        </label>
+        <label>
+            <input type="radio" name="connection" value="BY_OTHERS" @onchange="(e) => UpdateConnection(ConnectionCreated.BY_OTHERS)" />
+            Others
+        </label>
 
-<div>
-    <h3>Connection was created by:</h3>
-    <label>
-        <input type="radio" name="connection" value="BY_ME" @onchange="(e) => UpdateConnection(ConnectionCreated.BY_ME)" />
-        Me
-    </label>
-    <label>
-        <input type="radio" name="connection" value="BY_OTHERS" @onchange="(e) => UpdateConnection(ConnectionCreated.BY_OTHERS)" />
-        Others
-    </label>
-</div>
+        <h3>Connection status:</h3>
+        <label>
+            <input type="radio" name="connection-status" value="PRIVATE" @onchange="(e) => UpdateConnectionStatus(ConnectionStatus.PRIVATE)" />
+            Private
+        </label>
+        <label>
+            <input type="radio" name="connection-status" value="SHARED" @onchange="(e) => UpdateConnectionStatus(ConnectionStatus.SHARED)" />
+            Shared
+        </label>
+        <label>
+            <input type="radio" name="connection-status" value="SHARED_IN_CLIENT" @onchange="(e) => UpdateConnectionStatus(ConnectionStatus.SHARED_IN_CLIENT)" />
+            Shared in Client
+        </label>
 
-<div>
-    <h3>Connection status:</h3>
-    <label>
-        <input type="radio" name="connection-status" value="PRIVATE" @onchange="(e) => UpdateConnectionStatus(ConnectionStatus.PRIVATE)" />
-        Private
-    </label>
-    <label>
-        <input type="radio" name="connection-status" value="SHARED" @onchange="(e) => UpdateConnectionStatus(ConnectionStatus.SHARED)" />
-        Shared
-    </label>
-</div>
+        <h3>User Role:</h3>
+        <label>
+            <input type="radio" name="role" value="OWNER" @onchange="(e) => UpdateRole(Role.OWNER)" />
+            Owner
+        </label>
+        <label>
+            <input type="radio" name="role" value="ADMIN" @onchange="(e) => UpdateRole(Role.ADMIN)" />
+            Admin
+        </label>
+        <label>
+            <input type="radio" name="role" value="EDITOR" @onchange="(e) => UpdateRole(Role.EDITOR)" />
+            Editor
+        </label>
+        <label>
+            <input type="radio" name="role" value="USER" @onchange="(e) => UpdateRole(Role.USER)" />
+            User
+        </label>
+        <label>
+            <input type="radio" name="role" value="VIEWER" @onchange="(e) => UpdateRole(Role.VIEWER)" />
+            Viewer
+        </label>
+    </div>
 
-<div>
-    <h3>User Role:</h3>
-    <label>
-        <input type="radio" name="role" value="OWNER" @onchange="(e) => UpdateRole(Role.OWNER)" />
-        Owner
-    </label>
-    <label>
-        <input type="radio" name="role" value="ADMIN" @onchange="(e) => UpdateRole(Role.ADMIN)" />
-        Admin
-    </label>
-    <label>
-        <input type="radio" name="role" value="EDITOR" @onchange="(e) => UpdateRole(Role.EDITOR)" />
-        Editor
-    </label>
-    <label>
-        <input type="radio" name="role" value="USER" @onchange="(e) => UpdateRole(Role.USER)" />
-        User
-    </label>
-    <label>
-        <input type="radio" name="role" value="VIEWER" @onchange="(e) => UpdateRole(Role.VIEWER)" />
-        Viewer
-    </label>
-</div>
-
-<hr />
-
-<div>
-    <h3>Visible actions:</h3>
-    <div id="result">
-        <pre>@result</pre>
+    <div class="result">
+        <h3>Visible actions:</h3>
+        <div id="result">
+            <pre>@result</pre>
+        </div>
     </div>
 </div>
 
+<hr />
 @code {
     private ConnectionCreated? connection;
     private ConnectionStatus? connectionStatus;

@@ -1,0 +1,42 @@
+﻿/* PermissionsGUI.razor.css */
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.radio-group, .result {
+    width: 45%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+    .radio-group h3, .result h3 {
+        margin-top: 0;
+    }
+
+    .radio-group label, .result pre {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+/* Additional styling for better visuals */
+.radio-group {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.result {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    white-space: pre-wrap; /* Ensures text wraps and new lines are respected */
+    overflow-wrap: break-word; /* Breaks long words and prevents overflow */
+}
+
+    .result pre {
+        white-space: pre-wrap; /* Ensures text wraps and new lines are respected */
+        overflow-wrap: break-word; /* Breaks long words and prevents overflow */
+    }

@@ -1,26 +1,32 @@
-﻿public enum ConnectionCreated
+﻿namespace PermissionEnums
 {
-    BY_ME,
-    BY_OTHERS
-}
 
-public enum ConnectionStatus
-{
-    PRIVATE,
-    SHARED
-}
+    public enum ConnectionCreated
+    {
+        BY_ME,
+        BY_OTHERS
+    }
 
-public enum Role
-{
-    OWNER,
-    ADMIN,
-    EDITOR,
-    USER,
-    VIEWER
-}
+    public enum ConnectionStatus
+    {
+        PRIVATE,
+        SHARED,
+        SHARED_IN_CLIENT
+    }
 
-public static class PermissionsText
-{
-    public const string OWNER = "Owner Permissions";
-    // Add other texts if needed
+    public enum Role
+    {
+        OWNER,
+        ADMIN,
+        EDITOR,
+        USER,
+        VIEWER
+    }
+
+    public static class PermissionsText
+    {
+        public const string OWNER = "Owner Permissions Owner Permissions Owner Permissions Owner Permissions Owner Permissions Owner Permissions Owner Permissions Owner Permissions Owner Permissions Owner Permissions Owner Permissions ";
+        // Add other texts if needed
+    }
+
 }
