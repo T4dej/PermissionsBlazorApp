@@ -9,14 +9,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{2D281EB5-CA51-4448-B362-C7AA7688E22B}|Permissions.csproj|c:\\programiranje\\gir repositories\\blazorpermissions\\permissionsblazorapp\\permissions\\components\\enum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2D281EB5-CA51-4448-B362-C7AA7688E22B}|Permissions.csproj|solutionrelative:components\\enum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2D281EB5-CA51-4448-B362-C7AA7688E22B}|Permissions.csproj|c:\\programiranje\\gir repositories\\blazorpermissions\\permissionsblazorapp\\permissions\\wwwroot\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{2D281EB5-CA51-4448-B362-C7AA7688E22B}|Permissions.csproj|solutionrelative:wwwroot\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2D281EB5-CA51-4448-B362-C7AA7688E22B}|Permissions.csproj|c:\\programiranje\\gir repositories\\blazorpermissions\\permissionsblazorapp\\permissions\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2D281EB5-CA51-4448-B362-C7AA7688E22B}|Permissions.csproj|solutionrelative:components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,34 +18,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "App.razor",
-              "DocumentMoniker": "C:\\Programiranje\\gir repositories\\BlazorPermissions\\PermissionsBlazorApp\\Permissions\\Components\\App.razor",
-              "RelativeDocumentMoniker": "Components\\App.razor",
-              "ToolTip": "C:\\Programiranje\\gir repositories\\BlazorPermissions\\PermissionsBlazorApp\\Permissions\\Components\\App.razor",
-              "RelativeToolTip": "Components\\App.razor",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAA7AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-03T17:55:18.683Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "app.css",
-              "DocumentMoniker": "C:\\Programiranje\\gir repositories\\BlazorPermissions\\PermissionsBlazorApp\\Permissions\\wwwroot\\app.css",
-              "RelativeDocumentMoniker": "wwwroot\\app.css",
-              "ToolTip": "C:\\Programiranje\\gir repositories\\BlazorPermissions\\PermissionsBlazorApp\\Permissions\\wwwroot\\app.css",
-              "RelativeToolTip": "wwwroot\\app.css",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACMAAAATAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-08-03T17:32:00.602Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -62,7 +28,7 @@
               "RelativeDocumentMoniker": "Components\\enum.cs",
               "ToolTip": "C:\\Programiranje\\gir repositories\\BlazorPermissions\\PermissionsBlazorApp\\Permissions\\Components\\enum.cs",
               "RelativeToolTip": "Components\\enum.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAMAAAAfAAAA",
+              "ViewState": "AQIAADEAAAAAAAAAAAAAwEIAAAAxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-03T09:22:09.623Z",
               "EditorCaption": ""
@@ -75,7 +41,7 @@
               "RelativeDocumentMoniker": "Components\\Pages\\PermissionsGUI.razor",
               "ToolTip": "C:\\Programiranje\\gir repositories\\BlazorPermissions\\PermissionsBlazorApp\\Permissions\\Components\\Pages\\PermissionsGUI.razor",
               "RelativeToolTip": "Components\\Pages\\PermissionsGUI.razor",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACAAAAARAAAA",
+              "ViewState": "AQIAAGMAAAAAAAAAAAAAAIEAAAB9AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-08-02T23:22:00.867Z",
               "EditorCaption": ""
