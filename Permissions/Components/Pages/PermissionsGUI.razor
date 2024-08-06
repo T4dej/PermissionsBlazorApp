@@ -59,6 +59,8 @@
         </label>
     </div>
 
+    <hr />
+
     <div class="result">
         <h3>Visible actions:</h3>
         <div id="result">
@@ -74,7 +76,6 @@
     </div>
 </div>
 
-<hr />
 @code {
     private ConnectionOwner? connectionOwner;
     private ConnectionStatus? connectionStatus;
@@ -112,35 +113,48 @@
         {
             result = (connectionOwner.Value, connectionStatus.Value, role.Value, switchSpace) switch
             {
-                (ConnectionOwner.ME, ConnectionStatus.PRIVATE, Role.OWNER, false) => PermissionsText.OWNER_PERMISSIONS.CombinedPermissions,
-                (ConnectionOwner.ME, ConnectionStatus.PRIVATE, Role.ADMIN, false) => PermissionsText.OWNER_PERMISSIONS.CombinedPermissions,
+                (ConnectionOwner.ME, ConnectionStatus.PRIVATE, Role.OWNER, false) => PermissionsText.CONNECTION_OWNER_PERMISSIONS.CombinedPermissions,
+                (ConnectionOwner.ME, ConnectionStatus.PRIVATE, Role.ADMIN, false) => PermissionsText.CONNECTION_OWNER_PERMISSIONS.CombinedPermissions,
                 (ConnectionOwner.ME, ConnectionStatus.PRIVATE, Role.EDITOR, false) => PermissionsText.CONNECTION_OWNER_NON_ADMIN_PERMISSIONS.CombinedPermissions,
-                (ConnectionOwner.ME, ConnectionStatus.PRIVATE, Role.USER, false) => "text (something 4)",
+                (ConnectionOwner.ME, ConnectionStatus.PRIVATE, Role.USER, false) => PermissionsText.CONNECTION_OWNER_NON_ADMIN_PERMISSIONS.CombinedPermissions,
                 (ConnectionOwner.ME, ConnectionStatus.PRIVATE, Role.VIEWER, false) => "Can't see shit!",
-                (ConnectionOwner.ME, ConnectionStatus.SHARED, Role.OWNER, false) => PermissionsText.OWNER_PERMISSIONS.CombinedPermissions,
-                (ConnectionOwner.ME, ConnectionStatus.SHARED, Role.ADMIN, false) => PermissionsText.OWNER_PERMISSIONS.CombinedPermissions,
+                (ConnectionOwner.ME, ConnectionStatus.SHARED, Role.OWNER, false) => PermissionsText.CONNECTION_OWNER_PERMISSIONS.CombinedPermissions,
+                (ConnectionOwner.ME, ConnectionStatus.SHARED, Role.ADMIN, false) => PermissionsText.CONNECTION_OWNER_PERMISSIONS.CombinedPermissions,
                 (ConnectionOwner.ME, ConnectionStatus.SHARED, Role.EDITOR, false) => PermissionsText.CONNECTION_OWNER_NON_ADMIN_PERMISSIONS.CombinedPermissions,
-                (ConnectionOwner.ME, ConnectionStatus.SHARED, Role.USER, false) => "text (something 10)",
+                (ConnectionOwner.ME, ConnectionStatus.SHARED, Role.USER, false) => PermissionsText.CONNECTION_OWNER_NON_ADMIN_PERMISSIONS.CombinedPermissions,
                 (ConnectionOwner.ME, ConnectionStatus.SHARED, Role.VIEWER, false) => "Can't see shit!",
-                (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.OWNER, false) => "text (something 11)",
-                (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.ADMIN, false) => "text (something 12)",
-                (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.EDITOR, false) => "text (something 13)",
-                (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.USER, false) => "text (something 14)",
+                (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.OWNER, false) => PermissionsText.CONNECTION_OWNER_PERMISSIONS.CombinedPermissions,
+                (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.ADMIN, false) => PermissionsText.CONNECTION_OWNER_PERMISSIONS.CombinedPermissions,
+                (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.EDITOR, false) => PermissionsText.CONNECTION_OWNER_NON_ADMIN_PERMISSIONS.CombinedPermissions,
+                (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.USER, false) => PermissionsText.CONNECTION_OWNER_NON_ADMIN_PERMISSIONS.CombinedPermissions,
                 (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.VIEWER, false) => "Can't see shit!",
-                (ConnectionOwner.OTHER, ConnectionStatus.PRIVATE, Role.OWNER, false) => "text (something 15)",
-                (ConnectionOwner.OTHER, ConnectionStatus.PRIVATE, Role.ADMIN, false) => "text (something 16)",
-                (ConnectionOwner.OTHER, ConnectionStatus.PRIVATE, Role.EDITOR, false) => "text (something 17)",
-                (ConnectionOwner.OTHER, ConnectionStatus.PRIVATE, Role.USER, false) => "text (something 18)",
+                (ConnectionOwner.OTHER, ConnectionStatus.PRIVATE, Role.OWNER, false) => PermissionsText.ADMIN_PERMISSIONS_PRIVATE_CONNECTION.CombinedPermissions,
+                (ConnectionOwner.OTHER, ConnectionStatus.PRIVATE, Role.ADMIN, false) => PermissionsText.ADMIN_PERMISSIONS_PRIVATE_CONNECTION.CombinedPermissions,
+                (ConnectionOwner.OTHER, ConnectionStatus.PRIVATE, Role.EDITOR, false) => PermissionsText.NON_ADMIN_PERMISSIONS_PRIVATE_CONNECTION.CombinedPermissions,
+                (ConnectionOwner.OTHER, ConnectionStatus.PRIVATE, Role.USER, false) => PermissionsText.NON_ADMIN_PERMISSIONS_PRIVATE_CONNECTION.CombinedPermissions,
                 (ConnectionOwner.OTHER, ConnectionStatus.PRIVATE, Role.VIEWER, false) => "Can't see shit!",
                 (ConnectionOwner.OTHER, ConnectionStatus.SHARED, Role.OWNER, false) => PermissionsText.ADMIN_PERMISSIONS.CombinedPermissions,
                 (ConnectionOwner.OTHER, ConnectionStatus.SHARED, Role.ADMIN, false) => PermissionsText.ADMIN_PERMISSIONS.CombinedPermissions,
                 (ConnectionOwner.OTHER, ConnectionStatus.SHARED, Role.EDITOR, false) => PermissionsText.NON_ADMIN_PERMISSIONS.CombinedPermissions,
                 (ConnectionOwner.OTHER, ConnectionStatus.SHARED, Role.USER, false) => PermissionsText.NON_ADMIN_PERMISSIONS.CombinedPermissions,
                 (ConnectionOwner.OTHER, ConnectionStatus.SHARED, Role.VIEWER, false) => "Can't see shit!",
+                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.OWNER, false) => PermissionsText.ADMIN_PERMISSIONS.CombinedPermissions,
+                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.ADMIN, false) => PermissionsText.ADMIN_PERMISSIONS.CombinedPermissions,
+                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.EDITOR, false) => PermissionsText.NON_ADMIN_PERMISSIONS.CombinedPermissions,
+                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.USER, false) => PermissionsText.NON_ADMIN_PERMISSIONS.CombinedPermissions,
+                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.VIEWER, false) => "Can't see shit!",
                 
                 // Handle the case where the space has been switched
-                (ConnectionOwner.ME, ConnectionStatus.PRIVATE, Role.OWNER, true) => "Space je switchan",
-                // Add additional cases for when space is switched if needed
+                (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.OWNER, true) => PermissionsText.CONNECTION_PERMISSIONS_CLIENT_SWITCH.CombinedPermissions,
+                (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.ADMIN, true) => PermissionsText.CONNECTION_PERMISSIONS_CLIENT_SWITCH.CombinedPermissions,
+                (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.EDITOR, true) => PermissionsText.CONNECTION_PERMISSIONS_CLIENT_SWITCH.CombinedPermissions,
+                (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.USER, true) => PermissionsText.CONNECTION_PERMISSIONS_CLIENT_SWITCH.CombinedPermissions,
+                (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.VIEWER, true) => "Can't see shit!",
+                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.OWNER, true) => PermissionsText.CONNECTION_PERMISSIONS_CLIENT_SWITCH.CombinedPermissions,
+                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.ADMIN, true) => PermissionsText.CONNECTION_PERMISSIONS_CLIENT_SWITCH.CombinedPermissions,
+                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.EDITOR, true) => PermissionsText.CONNECTION_PERMISSIONS_CLIENT_SWITCH.CombinedPermissions,
+                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.USER, true) => PermissionsText.CONNECTION_PERMISSIONS_CLIENT_SWITCH.CombinedPermissions,
+                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.VIEWER, true) => "Can't see shit!",
                 _ => string.Empty
             };
         }
