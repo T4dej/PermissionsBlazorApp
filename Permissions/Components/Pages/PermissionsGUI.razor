@@ -52,10 +52,14 @@
             Viewer
         </label>
 
-        <h3>Did you switch from Agency to Client space?</h3>
+        <h3>Other options</h3>
         <label>
             <input type="checkbox" name="switchSpace" value="SPACE_SWITCHED" @onchange="(e) => UpdateSpaceSwitched(e.Value as bool?)" />
-            Yes
+            Switch space to client
+        </label>
+        <label>
+            <input type="checkbox" name="privateDataSource" value="PRIVATE_CONNECTION" @onchange="(e) => UpdatePrivateDataSource(e.Value as bool?)" />
+            You don't have access to Data source
         </label>
     </div>
 
@@ -81,6 +85,7 @@
     private ConnectionStatus? connectionStatus;
     private Role? role;
     private bool switchSpace = false;
+    private bool privateDataSource = false;
     private string result = string.Empty;
 
     private void UpdateConnection(ConnectionOwner connectionCreated)
@@ -107,54 +112,68 @@
         UpdateResult();
     }
 
+    private void UpdatePrivateDataSource(bool? isDataSourcePrivate)
+    {
+        privateDataSource = isDataSourcePrivate ?? false;
+        UpdateResult();
+    }
+
     private void UpdateResult()
     {
         if (connectionOwner.HasValue && connectionStatus.HasValue && role.HasValue)
         {
-            result = (connectionOwner.Value, connectionStatus.Value, role.Value, switchSpace) switch
+            result = (connectionOwner.Value, connectionStatus.Value, role.Value, switchSpace, privateDataSource) switch
             {
-                (ConnectionOwner.ME, ConnectionStatus.PRIVATE, Role.OWNER, false) => PermissionsText.CONNECTION_OWNER_PERMISSIONS.CombinedPermissions,
-                (ConnectionOwner.ME, ConnectionStatus.PRIVATE, Role.ADMIN, false) => PermissionsText.CONNECTION_OWNER_PERMISSIONS.CombinedPermissions,
-                (ConnectionOwner.ME, ConnectionStatus.PRIVATE, Role.EDITOR, false) => PermissionsText.CONNECTION_OWNER_NON_ADMIN_PERMISSIONS.CombinedPermissions,
-                (ConnectionOwner.ME, ConnectionStatus.PRIVATE, Role.USER, false) => PermissionsText.CONNECTION_OWNER_NON_ADMIN_PERMISSIONS.CombinedPermissions,
-                (ConnectionOwner.ME, ConnectionStatus.PRIVATE, Role.VIEWER, false) => "Can't see shit!",
-                (ConnectionOwner.ME, ConnectionStatus.SHARED, Role.OWNER, false) => PermissionsText.CONNECTION_OWNER_PERMISSIONS.CombinedPermissions,
-                (ConnectionOwner.ME, ConnectionStatus.SHARED, Role.ADMIN, false) => PermissionsText.CONNECTION_OWNER_PERMISSIONS.CombinedPermissions,
-                (ConnectionOwner.ME, ConnectionStatus.SHARED, Role.EDITOR, false) => PermissionsText.CONNECTION_OWNER_NON_ADMIN_PERMISSIONS.CombinedPermissions,
-                (ConnectionOwner.ME, ConnectionStatus.SHARED, Role.USER, false) => PermissionsText.CONNECTION_OWNER_NON_ADMIN_PERMISSIONS.CombinedPermissions,
-                (ConnectionOwner.ME, ConnectionStatus.SHARED, Role.VIEWER, false) => "Can't see shit!",
-                (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.OWNER, false) => PermissionsText.CONNECTION_OWNER_PERMISSIONS.CombinedPermissions,
-                (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.ADMIN, false) => PermissionsText.CONNECTION_OWNER_PERMISSIONS.CombinedPermissions,
-                (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.EDITOR, false) => PermissionsText.CONNECTION_OWNER_NON_ADMIN_PERMISSIONS.CombinedPermissions,
-                (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.USER, false) => PermissionsText.CONNECTION_OWNER_NON_ADMIN_PERMISSIONS.CombinedPermissions,
-                (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.VIEWER, false) => "Can't see shit!",
-                (ConnectionOwner.OTHER, ConnectionStatus.PRIVATE, Role.OWNER, false) => PermissionsText.ADMIN_PERMISSIONS_PRIVATE_CONNECTION.CombinedPermissions,
-                (ConnectionOwner.OTHER, ConnectionStatus.PRIVATE, Role.ADMIN, false) => PermissionsText.ADMIN_PERMISSIONS_PRIVATE_CONNECTION.CombinedPermissions,
-                (ConnectionOwner.OTHER, ConnectionStatus.PRIVATE, Role.EDITOR, false) => PermissionsText.NON_ADMIN_PERMISSIONS_PRIVATE_CONNECTION.CombinedPermissions,
-                (ConnectionOwner.OTHER, ConnectionStatus.PRIVATE, Role.USER, false) => PermissionsText.NON_ADMIN_PERMISSIONS_PRIVATE_CONNECTION.CombinedPermissions,
-                (ConnectionOwner.OTHER, ConnectionStatus.PRIVATE, Role.VIEWER, false) => "Can't see shit!",
-                (ConnectionOwner.OTHER, ConnectionStatus.SHARED, Role.OWNER, false) => PermissionsText.ADMIN_PERMISSIONS.CombinedPermissions,
-                (ConnectionOwner.OTHER, ConnectionStatus.SHARED, Role.ADMIN, false) => PermissionsText.ADMIN_PERMISSIONS.CombinedPermissions,
-                (ConnectionOwner.OTHER, ConnectionStatus.SHARED, Role.EDITOR, false) => PermissionsText.NON_ADMIN_PERMISSIONS.CombinedPermissions,
-                (ConnectionOwner.OTHER, ConnectionStatus.SHARED, Role.USER, false) => PermissionsText.NON_ADMIN_PERMISSIONS.CombinedPermissions,
-                (ConnectionOwner.OTHER, ConnectionStatus.SHARED, Role.VIEWER, false) => "Can't see shit!",
-                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.OWNER, false) => PermissionsText.ADMIN_PERMISSIONS.CombinedPermissions,
-                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.ADMIN, false) => PermissionsText.ADMIN_PERMISSIONS.CombinedPermissions,
-                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.EDITOR, false) => PermissionsText.NON_ADMIN_PERMISSIONS.CombinedPermissions,
-                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.USER, false) => PermissionsText.NON_ADMIN_PERMISSIONS.CombinedPermissions,
-                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.VIEWER, false) => "Can't see shit!",
-                
+                (ConnectionOwner.ME, ConnectionStatus.PRIVATE, Role.OWNER, false, false) => PermissionsText.CONNECTION_OWNER_PERMISSIONS.CombinedPermissions,
+                (ConnectionOwner.ME, ConnectionStatus.PRIVATE, Role.ADMIN, false, false) => PermissionsText.CONNECTION_OWNER_PERMISSIONS.CombinedPermissions,
+                (ConnectionOwner.ME, ConnectionStatus.PRIVATE, Role.EDITOR, false, false) => PermissionsText.CONNECTION_OWNER_NON_ADMIN_PERMISSIONS.CombinedPermissions,
+                (ConnectionOwner.ME, ConnectionStatus.PRIVATE, Role.USER, false, false) => PermissionsText.CONNECTION_OWNER_NON_ADMIN_PERMISSIONS.CombinedPermissions,
+                (ConnectionOwner.ME, ConnectionStatus.PRIVATE, Role.VIEWER, false, false) => "Can't see shit!",
+                (ConnectionOwner.ME, ConnectionStatus.SHARED, Role.OWNER, false, false) => PermissionsText.CONNECTION_OWNER_PERMISSIONS.CombinedPermissions,
+                (ConnectionOwner.ME, ConnectionStatus.SHARED, Role.ADMIN, false, false) => PermissionsText.CONNECTION_OWNER_PERMISSIONS.CombinedPermissions,
+                (ConnectionOwner.ME, ConnectionStatus.SHARED, Role.EDITOR, false, false) => PermissionsText.CONNECTION_OWNER_NON_ADMIN_PERMISSIONS.CombinedPermissions,
+                (ConnectionOwner.ME, ConnectionStatus.SHARED, Role.USER, false, false) => PermissionsText.CONNECTION_OWNER_NON_ADMIN_PERMISSIONS.CombinedPermissions,
+                (ConnectionOwner.ME, ConnectionStatus.SHARED, Role.VIEWER, false, false) => "Can't see shit!",
+                (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.OWNER, false, false) => PermissionsText.CONNECTION_OWNER_PERMISSIONS.CombinedPermissions,
+                (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.ADMIN, false, false) => PermissionsText.CONNECTION_OWNER_PERMISSIONS.CombinedPermissions,
+                (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.EDITOR, false, false) => PermissionsText.CONNECTION_OWNER_NON_ADMIN_PERMISSIONS.CombinedPermissions,
+                (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.USER, false, false) => PermissionsText.CONNECTION_OWNER_NON_ADMIN_PERMISSIONS.CombinedPermissions,
+                (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.VIEWER, false, false) => "Can't see shit!",
+                (ConnectionOwner.OTHER, ConnectionStatus.PRIVATE, Role.OWNER, false, false) => PermissionsText.ADMIN_PERMISSIONS_PRIVATE_CONNECTION.CombinedPermissions,
+                (ConnectionOwner.OTHER, ConnectionStatus.PRIVATE, Role.ADMIN, false, false) => PermissionsText.ADMIN_PERMISSIONS_PRIVATE_CONNECTION.CombinedPermissions,
+                (ConnectionOwner.OTHER, ConnectionStatus.PRIVATE, Role.EDITOR, false, false) => PermissionsText.NON_ADMIN_PERMISSIONS_PRIVATE_CONNECTION.CombinedPermissions,
+                (ConnectionOwner.OTHER, ConnectionStatus.PRIVATE, Role.USER, false, false) => PermissionsText.NON_ADMIN_PERMISSIONS_PRIVATE_CONNECTION.CombinedPermissions,
+                (ConnectionOwner.OTHER, ConnectionStatus.PRIVATE, Role.VIEWER, false, false) => "Can't see shit!",
+                (ConnectionOwner.OTHER, ConnectionStatus.SHARED, Role.OWNER, false, false) => PermissionsText.ADMIN_PERMISSIONS.CombinedPermissions,
+                (ConnectionOwner.OTHER, ConnectionStatus.SHARED, Role.ADMIN, false, false) => PermissionsText.ADMIN_PERMISSIONS.CombinedPermissions,
+                (ConnectionOwner.OTHER, ConnectionStatus.SHARED, Role.EDITOR, false, false) => PermissionsText.NON_ADMIN_PERMISSIONS.GetCombinedPermissions(privateDataSource),
+                (ConnectionOwner.OTHER, ConnectionStatus.SHARED, Role.USER, false, false) => PermissionsText.NON_ADMIN_PERMISSIONS.GetCombinedPermissions(privateDataSource),
+                (ConnectionOwner.OTHER, ConnectionStatus.SHARED, Role.VIEWER, false, false) => "Can't see shit!",
+                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.OWNER, false, false) => PermissionsText.ADMIN_PERMISSIONS.CombinedPermissions,
+                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.ADMIN, false, false) => PermissionsText.ADMIN_PERMISSIONS.CombinedPermissions,
+                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.EDITOR, false, false) => PermissionsText.NON_ADMIN_PERMISSIONS.GetCombinedPermissions(privateDataSource),
+                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.USER, false, false) => PermissionsText.NON_ADMIN_PERMISSIONS.GetCombinedPermissions(privateDataSource),
+                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.VIEWER, false, false) => "Can't see shit!",
+
                 // Handle the case where the space has been switched
-                (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.OWNER, true) => PermissionsText.CONNECTION_PERMISSIONS_CLIENT_SWITCH.CombinedPermissions,
-                (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.ADMIN, true) => PermissionsText.CONNECTION_PERMISSIONS_CLIENT_SWITCH.CombinedPermissions,
-                (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.EDITOR, true) => PermissionsText.CONNECTION_PERMISSIONS_CLIENT_SWITCH.CombinedPermissions,
-                (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.USER, true) => PermissionsText.CONNECTION_PERMISSIONS_CLIENT_SWITCH.CombinedPermissions,
-                (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.VIEWER, true) => "Can't see shit!",
-                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.OWNER, true) => PermissionsText.CONNECTION_PERMISSIONS_CLIENT_SWITCH.CombinedPermissions,
-                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.ADMIN, true) => PermissionsText.CONNECTION_PERMISSIONS_CLIENT_SWITCH.CombinedPermissions,
-                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.EDITOR, true) => PermissionsText.CONNECTION_PERMISSIONS_CLIENT_SWITCH.CombinedPermissions,
-                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.USER, true) => PermissionsText.CONNECTION_PERMISSIONS_CLIENT_SWITCH.CombinedPermissions,
-                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.VIEWER, true) => "Can't see shit!",
+                (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.OWNER, true, false) => PermissionsText.CONNECTION_PERMISSIONS_CLIENT_SWITCH.CombinedPermissions,
+                (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.ADMIN, true, false) => PermissionsText.CONNECTION_PERMISSIONS_CLIENT_SWITCH.CombinedPermissions,
+                (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.EDITOR, true, false) => PermissionsText.CONNECTION_PERMISSIONS_CLIENT_SWITCH.CombinedPermissions,
+                (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.USER, true, false) => PermissionsText.CONNECTION_PERMISSIONS_CLIENT_SWITCH.CombinedPermissions,
+                (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.VIEWER, true, false) => "Can't see shit!",
+                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.OWNER, true, false) => PermissionsText.CONNECTION_PERMISSIONS_CLIENT_SWITCH.CombinedPermissions,
+                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.ADMIN, true, false) => PermissionsText.CONNECTION_PERMISSIONS_CLIENT_SWITCH.CombinedPermissions,
+                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.EDITOR, true, false) => PermissionsText.CONNECTION_PERMISSIONS_CLIENT_SWITCH.CombinedPermissions,
+                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.USER, true, false) => PermissionsText.CONNECTION_PERMISSIONS_CLIENT_SWITCH.CombinedPermissions,
+                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.VIEWER, true, false) => "Can't see shit!",
+
+                // Adding additional condition for privateDataSource true
+                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.EDITOR, true, true) => PermissionsText.NON_ADMIN_PERMISSIONS.GetCombinedPermissions(privateDataSource),
+                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.USER, true, true) => PermissionsText.NON_ADMIN_PERMISSIONS.GetCombinedPermissions(privateDataSource),
+                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.VIEWER, true, true) => "Can't see shit!",
+                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.EDITOR, false, true) => PermissionsText.NON_ADMIN_PERMISSIONS.GetCombinedPermissions(privateDataSource),
+                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.USER, false, true) => PermissionsText.NON_ADMIN_PERMISSIONS.GetCombinedPermissions(privateDataSource),
+                (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.VIEWER, false, true) => "Can't see shit!",
                 _ => string.Empty
             };
         }

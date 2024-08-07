@@ -230,26 +230,65 @@
 
             public static readonly string AMA_DATA_SOURCE_PAGE = Actions.AMA_DATA_SOURCE_PAGE.GetString();
             public static readonly string CHANGE_REFRESH_FREQUENCY = Actions.CHANGE_REFRESH_FREQUENCY.GetString();
+            public static readonly string CAN_NOT_SEE_DATA_SOURCE = Actions.CAN_NOT_SEE_DATA_SOURCE.GetString();
 
             public static readonly string AMA_CONNECTION_PAGE = Actions.AMA_CONNECTION_PAGE.GetString();
 
 
-            public static readonly List<string> AllPermissions = new List<string>
-        {
-            P1_DATA_SOURCE_PAGE,
-            DETAILS,
-            SEE_ALL_METRICS,
+            public static List<string> GetAllPermissions(bool privateDataSource)
+            {
+                var permissions = new List<string>
+            {
+                P1_DATA_SOURCE_PAGE,
+                DETAILS,
+                SEE_ALL_METRICS,
+                AMA_CONNECTION_PAGE,
+                DETAILS
+            };
 
-            AMA_DATA_SOURCE_PAGE,
-            DETAILS,
-            CHANGE_REFRESH_FREQUENCY,
+                if (privateDataSource)
+                {
+                    permissions.AddRange(new List<string>
+                {
+                    AMA_DATA_SOURCE_PAGE,
+                    CAN_NOT_SEE_DATA_SOURCE
+                });
+                }
+                else
+                {
+                    permissions.AddRange(new List<string>
+                {
+                    AMA_DATA_SOURCE_PAGE,
+                    DETAILS,
+                    CHANGE_REFRESH_FREQUENCY
+                });
+                }
 
-            AMA_CONNECTION_PAGE,
-            DETAILS
-        };
+                return permissions;
+            }
 
-            public static string CombinedPermissions => string.Join("\n", AllPermissions);
+            public static string GetCombinedPermissions(bool privateDataSource)
+            {
+                return string.Join("\n", GetAllPermissions(privateDataSource));
+            }
         }
+
+        /*public static readonly List<string> AllPermissions = new List<string>
+    {
+        P1_DATA_SOURCE_PAGE,
+        DETAILS,
+        SEE_ALL_METRICS,
+
+        AMA_DATA_SOURCE_PAGE,
+        DETAILS,
+        CHANGE_REFRESH_FREQUENCY,
+
+        AMA_CONNECTION_PAGE,
+        DETAILS
+    };
+
+        public static string CombinedPermissions => string.Join("\n", AllPermissions);
+    }*/
 
         public static class NON_ADMIN_PERMISSIONS_PRIVATE_CONNECTION //Not owner of connection which is private, non admin role
         {
