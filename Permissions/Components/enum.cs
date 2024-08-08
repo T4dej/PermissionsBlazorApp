@@ -342,23 +342,6 @@
             }
         }
 
-            /* public static readonly List<string> AllPermissions = new List<string>
-         {
-             P1_DATA_SOURCE_PAGE,
-             DETAILS,
-             SEE_ALL_METRICS,
-
-             AMA_DATA_SOURCE_PAGE,
-             DETAILS,
-             CHANGE_REFRESH_FREQUENCY,
-
-             AMA_CONNECTION_PAGE,
-             CAN_NOT_SEE_CONNECTION
-         };
-
-             public static string CombinedPermissions => string.Join("\n", AllPermissions);
-         }*/
-
             public static class CONNECTION_OWNER_NON_ADMIN_PERMISSIONS //Connection owner, non admin role
         {
             public static readonly string P1_DATA_SOURCE_PAGE = Actions.P1_DATA_SOURCE_PAGE.GetString();
