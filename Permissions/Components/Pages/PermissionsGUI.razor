@@ -15,6 +15,10 @@
             <input type="radio" name="connection-owner" value="BY_OTHERS" @onchange="(e) => UpdateConnection(ConnectionOwner.OTHER)" />
             Other
         </label>
+        <label>
+            <input type="radio" name="connection-owner" value="ASK_A_TEAMMATE" @onchange="(e) => UpdateConnection(ConnectionOwner.ASK_A_TEAMMATE)" />
+            Ask a teammate to connect
+        </label>
 
         <h3>Connection status:</h3>
         <label>
@@ -180,6 +184,21 @@
                 (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.EDITOR, false, false, false, false) => PermissionsText.NON_ADMIN_PERMISSIONS.GetCombinedPermissions(privateDataSource),
                 (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.USER, false, false, false, false) => PermissionsText.NON_ADMIN_PERMISSIONS.GetCombinedPermissions(privateDataSource),
                 (ConnectionOwner.OTHER, ConnectionStatus.SHARED_IN_CLIENT, Role.VIEWER, false, false, false, false) => "Can't see shit!",
+                (ConnectionOwner.ASK_A_TEAMMATE, ConnectionStatus.PRIVATE, Role.OWNER, false, false, false, false) => "Morem dodat tekst",
+                (ConnectionOwner.ASK_A_TEAMMATE, ConnectionStatus.PRIVATE, Role.ADMIN, false, false, false, false) => "Morem dodat tekst",
+                (ConnectionOwner.ASK_A_TEAMMATE, ConnectionStatus.PRIVATE, Role.EDITOR, false, false, false, false) => "Morem dodat tekst",
+                (ConnectionOwner.ASK_A_TEAMMATE, ConnectionStatus.PRIVATE, Role.USER, false, false, false, false) => "Morem dodat tekst",
+                (ConnectionOwner.ASK_A_TEAMMATE, ConnectionStatus.PRIVATE, Role.VIEWER, false, false, false, false) => "Can't see shit!",
+                (ConnectionOwner.ASK_A_TEAMMATE, ConnectionStatus.SHARED, Role.OWNER, false, false, false, false) => "Morem dodat tekst",
+                (ConnectionOwner.ASK_A_TEAMMATE, ConnectionStatus.SHARED, Role.ADMIN, false, false, false, false) => "Morem dodat tekst",
+                (ConnectionOwner.ASK_A_TEAMMATE, ConnectionStatus.SHARED, Role.EDITOR, false, false, false, false) => "Morem dodat tekst",
+                (ConnectionOwner.ASK_A_TEAMMATE, ConnectionStatus.SHARED, Role.USER, false, false, false, false) => "Morem dodat tekst",
+                (ConnectionOwner.ASK_A_TEAMMATE, ConnectionStatus.SHARED, Role.VIEWER, false, false, false, false) => "Can't see shit!",
+                (ConnectionOwner.ASK_A_TEAMMATE, ConnectionStatus.SHARED_IN_CLIENT, Role.OWNER, false, false, false, false) => "Morem dodat tekst",
+                (ConnectionOwner.ASK_A_TEAMMATE, ConnectionStatus.SHARED_IN_CLIENT, Role.ADMIN, false, false, false, false) => "Morem dodat tekst",
+                (ConnectionOwner.ASK_A_TEAMMATE, ConnectionStatus.SHARED_IN_CLIENT, Role.EDITOR, false, false, false, false) => "Morem dodat tekst",
+                (ConnectionOwner.ASK_A_TEAMMATE, ConnectionStatus.SHARED_IN_CLIENT, Role.USER, false, false, false, false) => "Morem dodat tekst",
+                (ConnectionOwner.ASK_A_TEAMMATE, ConnectionStatus.SHARED_IN_CLIENT, Role.VIEWER, false, false, false, false) => "Can't see shit!",
 
                 // Handle the case where the space has been switched from Agency to Client
                 (ConnectionOwner.ME, ConnectionStatus.SHARED_IN_CLIENT, Role.OWNER, false, false, true, false) => PermissionsText.CONNECTION_PERMISSIONS_CLIENT_SWITCH.CombinedPermissions,

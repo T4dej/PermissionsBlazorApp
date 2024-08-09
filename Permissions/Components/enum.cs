@@ -4,14 +4,15 @@
     public enum ConnectionOwner
     {
         ME,
-        OTHER
+        OTHER,
+        ASK_A_TEAMMATE
     }
 
     public enum ConnectionStatus
     {
         PRIVATE,
         SHARED,
-        SHARED_IN_CLIENT
+        SHARED_IN_CLIENT,
     }
 
     public enum Role
